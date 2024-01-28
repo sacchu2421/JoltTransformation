@@ -18,7 +18,7 @@ public class JoltController {
     JoltService joltService;
 
     @PostMapping(value = JoltConstant.API_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Object> getRequest(@RequestBody String request) {
+    public Mono<String> getRequest(@RequestBody String request) {
 
         if (log.isDebugEnabled()) {
             log.debug("getRequest() : request -> {}", request);
