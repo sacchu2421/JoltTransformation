@@ -17,5 +17,6 @@ public class ExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    //TODO Need to find a way to eliminate ErrorResponse class as there are multiple classes we have as of now
     // Add more exception handlers for other exceptions if needed
 }
