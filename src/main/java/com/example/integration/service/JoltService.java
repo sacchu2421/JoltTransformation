@@ -15,7 +15,7 @@ public class JoltService {
     @Autowired
     JoltProperties joltProperties;
 
-    public Mono<Object> joltTransform(String request) {
+    public Mono<String> joltTransform(String request) {
 
         return joltUtils.transform(request, joltProperties.getJoltSpec());
     }

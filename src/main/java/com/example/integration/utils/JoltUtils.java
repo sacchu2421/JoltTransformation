@@ -5,7 +5,6 @@ import com.bazaarvoice.jolt.JsonUtils;
 import com.example.integration.exception.CustomException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class JoltUtils {
 
 
-    public Mono<Object> transform(String joltInput, String joltSpec) {
+    public Mono<String> transform(String joltInput, String joltSpec) {
 
         try {
             Base64.Decoder decoder = Base64.getDecoder();
@@ -40,8 +39,7 @@ public class JoltUtils {
             if (log.isErrorEnabled()) {
                 log.error("transform() : Exception : joltInput -> {}, Exception -> {} : {}", joltInput, e.getMessage(), e);
             }
-            //TODO resolve return of error
-            return Mono.just(ResponseEntity.badRequest().body(new CustomException(e.getMessage(), HttpStatus.BAD_REQUEST.value())));
+            throw new CustomException(e.getMessage(), HttpStatus.BAD_REQUEST.value());
         }
     }
 }
